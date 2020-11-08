@@ -6,7 +6,7 @@
 /*   By: yataji <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 13:35:24 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/06 04:48:00 by yataji           ###   ########.fr       */
+/*   Updated: 2020/11/08 02:35:21 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	mandelbrot(t_mlx param)
 			{
 				z.x = 0;
 				z.y = 0;
-				c.x =  4 * x / MAXWIDTH - 2;
-				c.y = 4 * y / MAXHEIGHT - 2;
+				c.x =  (mlx->w.xmax - mlx->w.xmin) * x / MAXWIDTH + mlx->w.xmin;
+				c.y =  (mlx->w.ymax - mlx->w.ymin) * y / MAXHEIGHT + mlx->w.ymin;
 				iter = 1;
 				while (powf(z.x, 2) + powf(z.y, 2) < 4 && iter < MAXIT)
 				{
