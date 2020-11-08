@@ -6,7 +6,7 @@
 /*   By: yataji <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:56:18 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/08 04:32:40 by root             ###   ########.fr       */
+/*   Updated: 2020/11/08 05:19:09 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct	mlx {
 	t_point	c;
 	t_move	w;
 } t_mlx;
-
+void julia_thread(t_mlx *mlx);
 void set(t_mlx *mlx, t_point *point, int x, int y);
 void choice(t_mlx *mlx);
 int color(int iter);
@@ -65,7 +65,7 @@ int	mousemove(int mx, int my, void * param);
 int keypress(int key, void *param);
 int mousepress(int button, int x, int y, void *param);
 void revers(t_mlx *fdf, int x, int y, int color);
-int julia(t_mlx *mlx);
+void *julia(void *param);
 int mandelbrot(t_mlx param);
 int burningship(t_mlx param);
 

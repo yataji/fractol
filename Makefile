@@ -6,7 +6,7 @@
 #    By: yataji <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 11:57:48 by yataji            #+#    #+#              #
-#    Updated: 2020/11/08 04:52:00 by root             ###   ########.fr        #
+#    Updated: 2020/11/08 04:57:30 by root             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ all: $(NAME)
 
 $(NAME): $(SRCS) $(INC)
 	@make  -s -C libft
+	@make -s -C minilibx
 	@gcc $(FLG) libft/libft.a minilibx/libmlx.a $(SRCS) -L /usr/local/lib -framework OpenGL -framework AppKit -o $(NAME) -I $(INC)
 	@printf "compilation completed\n"
 

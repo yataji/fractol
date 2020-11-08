@@ -6,7 +6,7 @@
 /*   By: yataji <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 02:40:16 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/08 04:16:53 by root             ###   ########.fr       */
+/*   Updated: 2020/11/08 05:13:50 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void choice(t_mlx *mlx)
 	if (*mlx->ac == '3')
 		burningship(*mlx);
 	if (*mlx->ac == '2')
-		julia(mlx);
+		julia_thread(mlx);
 	if (*mlx->ac == '1')
 		mandelbrot(*mlx);
 
