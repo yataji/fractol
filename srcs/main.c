@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yataji <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 02:40:16 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/10 05:56:25 by yataji           ###   ########.fr       */
+/*   Updated: 2020/11/14 03:31:00 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ int					main(int av, char **ac)
 	{
 		mlx = init(ac[1]);
 		mlx.ptr = mlx_init();
-		mlx.win_ptr = mlx_new_window(mlx.ptr, MAXWIDTH, MAXHEIGHT +
-				200, "fractall");
+		mlx.win_ptr = mlx_new_window(mlx.ptr, MAXWIDTH, MAXHEIGHT, "fractall");
 		mlx.img_ptr = mlx_new_image(mlx.ptr, MAXWIDTH, MAXHEIGHT);
 		mlx.dtadd = (int *)mlx_get_data_addr(mlx.img_ptr, &mlx.bpp,
 				&mlx.size_line, &mlx.end);

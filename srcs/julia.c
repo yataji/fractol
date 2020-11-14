@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yataji <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 13:45:43 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/10 05:56:30 by yataji           ###   ########.fr       */
+/*   Updated: 2020/11/14 00:52:41 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void			*julia(void *param)
 			z.x = (mlx->w.xmax - mlx->w.xmin) * x / MAXWIDTH + mlx->w.xmin;
 			z.y = (mlx->w.ymax - mlx->w.ymin) * y / MAXHEIGHT + mlx->w.ymin;
 			mlx->iter[0] = 1;
-			while (powf(z.x, 2) + powf(z.y, 2) < 4 && ++mlx->iter[0] < MXIT)
+			while (z.x * z.x + z.y * z.y < 4 && ++mlx->iter[0] < MXIT)
 			{
 				mlx->tmp[0] = z.x;
-				z.x = powf(z.x, 2) - powf(z.y, 2) + mlx->c.x;
+				z.x = z.x * z.x - z.y * z.y + mlx->c.x;
 				z.y = (2 * mlx->tmp[0] * z.y + mlx->c.y);
 			}
 			revers(mlx, x, y, color(mlx->iter[0]));
@@ -58,10 +58,10 @@ void			*julia1(void *param)
 			z.x = (mlx->w.xmax - mlx->w.xmin) * x / MAXWIDTH + mlx->w.xmin;
 			z.y = (mlx->w.ymax - mlx->w.ymin) * y / MAXHEIGHT + mlx->w.ymin;
 			mlx->iter[1] = 1;
-			while (powf(z.x, 2) + powf(z.y, 2) < 4 && ++mlx->iter[1] < MXIT)
+			while (z.x * z.x + z.y * z.y < 4 && ++mlx->iter[1] < MXIT)
 			{
 				mlx->tmp[1] = z.x;
-				z.x = powf(z.x, 2) - powf(z.y, 2) + mlx->c.x;
+				z.x = z.x * z.x - z.y * z.y + mlx->c.x;
 				z.y = (2 * mlx->tmp[1] * z.y + mlx->c.y);
 			}
 			revers(mlx, x, y, color(mlx->iter[1]));
@@ -87,10 +87,10 @@ void			*julia2(void *param)
 			z.x = (mlx->w.xmax - mlx->w.xmin) * x / MAXWIDTH + mlx->w.xmin;
 			z.y = (mlx->w.ymax - mlx->w.ymin) * y / MAXHEIGHT + mlx->w.ymin;
 			mlx->iter[2] = 1;
-			while (powf(z.x, 2) + powf(z.y, 2) < 4 && ++mlx->iter[2] < MXIT)
+			while (z.x * z.x + z.y * z.y < 4 && ++mlx->iter[2] < MXIT)
 			{
 				mlx->tmp[2] = z.x;
-				z.x = powf(z.x, 2) - powf(z.y, 2) + mlx->c.x;
+				z.x = z.x * z.x - z.y * z.y + mlx->c.x;
 				z.y = (2 * mlx->tmp[2] * z.y + mlx->c.y);
 			}
 			revers(mlx, x, y, color(mlx->iter[2]));
@@ -116,10 +116,10 @@ void			*julia3(void *param)
 			z.x = (mlx->w.xmax - mlx->w.xmin) * x / MAXWIDTH + mlx->w.xmin;
 			z.y = (mlx->w.ymax - mlx->w.ymin) * y / MAXHEIGHT + mlx->w.ymin;
 			mlx->iter[3] = 1;
-			while (powf(z.x, 2) + powf(z.y, 2) < 4 && ++mlx->iter[3] < MXIT)
+			while (z.x * z.x + z.y * z.y < 4 && ++mlx->iter[3] < MXIT)
 			{
 				mlx->tmp[3] = z.x;
-				z.x = powf(z.x, 2) - powf(z.y, 2) + mlx->c.x;
+				z.x = z.x * z.x - z.y * z.y + mlx->c.x;
 				z.y = (2 * mlx->tmp[3] * z.y + mlx->c.y);
 			}
 			revers(mlx, x, y, color(mlx->iter[3]));

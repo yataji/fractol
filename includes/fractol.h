@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yataji <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:56:18 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/10 05:56:29 by yataji           ###   ########.fr       */
+/*   Updated: 2020/11/14 00:53:07 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ int		mousepress(int button, int x, int y, void *param);
 void	revers(t_mlx *fdf, int x, int y, int color);
 void	mandelbrot_thread(t_mlx *mlx);
 void	burningship_thread(t_mlx *mlx);
+double	absolu(double calc);
 
 #endif
