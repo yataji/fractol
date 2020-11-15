@@ -6,7 +6,7 @@
 /*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:56:18 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/14 04:45:36 by yataji           ###   ########.fr       */
+/*   Updated: 2020/11/15 07:07:50 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@ typedef struct	s_move {
 	double		ymax;
 }				t_move;
 
+typedef struct	s_color
+{
+	int			i;
+	int			j;
+	int			l;
+}				t_color;
+
 typedef	struct	s_mlx	{
 	void		*ptr;
 	void		*win_ptr;
@@ -47,14 +54,14 @@ typedef	struct	s_mlx	{
 	int			end;
 	int			julia;
 	int			pause;
-	int			mx;
-	int			my;
-	int			iter[4];
+	int			itr[4];
 	double		tmp[4];
 	char		*ac;
 	t_point		c;
 	t_move		w;
+	t_color		r;
 }				t_mlx;
+
 typedef struct	s_thread {
 	double		x;
 	double		y;
@@ -62,17 +69,19 @@ typedef struct	s_thread {
 	t_point		c;
 }				t_thread;
 
+
 void	julia_thread(t_mlx *mlx);
 void	set(t_mlx *mlx, t_point *point, int x, int y);
 void	choice(t_mlx *mlx);
-int		color(int iter);
-int		colora(int iter);
+int		clr(int iter, int i, int j, int l);
 int		mousemove(int mx, int my, void *param);
 int		keypress(int key, void *param);
 int		mousepress(int button, int x, int y, void *param);
-void	revers(t_mlx *fdf, int x, int y, int color);
+void	dt(t_mlx *mlx, int x, int y, int color);
 void	mandelbrot_thread(t_mlx *mlx);
 void	burningship_thread(t_mlx *mlx);
 double	absolu(double calc);
+void	menu(t_mlx mlx);
+void	changecolor(t_mlx *mlx);
 
 #endif

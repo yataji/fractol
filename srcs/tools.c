@@ -6,14 +6,18 @@
 /*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 05:43:23 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/14 04:33:57 by yataji           ###   ########.fr       */
+/*   Updated: 2020/11/15 07:11:28 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
-double		absolu(double calc)
+void				dt(t_mlx *mlx, int x, int y, int color)
+{
+	mlx->dtadd[x + y * (int)MAXWIDTH] = color;
+}
+
+double				absolu(double calc)
 {
 	if (calc > 0)
 		return (calc);
@@ -21,56 +25,46 @@ double		absolu(double calc)
 		return (calc * -1.0);
 }
 
-void		set(t_mlx *mlx, t_point *point, int x, int y)
+void				changecolor(t_mlx *mlx)
 {
-	point->x = (mlx->w.xmax - mlx->w.xmin) * x / MAXWIDTH + mlx->w.xmin;
-	point->y = (mlx->w.ymax - mlx->w.ymin) * y / MAXHEIGHT + mlx->w.ymin;
+	mlx->r.i++;
+	mlx->r.j++;
+	mlx->r.l++;
+	mlx->r.l > 2 ? mlx->r.l = 0 : 0;
+	mlx->r.j > 2 ? mlx->r.j = 0 : 0;
+	mlx->r.i > 2 ? mlx->r.i = 0 : 0;
 }
 
-int			keypress(int key, void *param)
+int					clr(int iter, int i, int j, int l)
 {
-	t_mlx	*mlx;
-	double	per;
+	double			per;
+	int				color;
+	unsigned char	*ptr;
 
-	mlx = (t_mlx *)param;
-	key == 53 ? exit(0) : 0;
-	key == 15 ? mlx->w.xmin = -2 : 0;
-	key == 15 ? mlx->w.ymin = -2 : 0;
-	key == 15 ? mlx->w.xmax = 2 : 0;
-	key == 15 ? mlx->w.ymax = 2 : 0;
-	key == 126 || key == 125 ? per = (mlx->w.ymax - mlx->w.ymin) * 0.05 : 0;
-	key == 126 ? mlx->w.ymin += per : 0;
-	key == 126 ? mlx->w.ymax += per : 0;
-	key == 125 ? mlx->w.ymin -= per : 0;
-	key == 125 ? mlx->w.ymax -= per : 0;
-	key == 123 || key == 124 ? per = (mlx->w.xmax - mlx->w.xmin) * 0.05 : 0;
-	key == 123 ? mlx->w.xmin += per : 0;
-	key == 123 ? mlx->w.xmax += per : 0;
-	key == 124 ? mlx->w.xmin -= per : 0;
-	key == 124 ? mlx->w.xmax -= per : 0;
-	choice(mlx);
-	return (0);
+	per = iter / MXIT;
+	ptr = (unsigned char *)&color;
+	ptr[3] = 0;
+	ptr[i] = 255 * (1.0 - per) * powf(per, 3) * 9;
+	ptr[j] = 255 * powf(1.0 - per, 2) * powf(per, 2) * 15;
+	ptr[l] = 255 * powf(1.0 - per, 3) * per * 8.5;
+	return (color);
 }
 
-void		choice(t_mlx *mlx)
+void				choice(t_mlx *mlx)
 {
 	if (*mlx->ac == '3')
-		burningship_thread(mlx);
-	if (*mlx->ac == '2')
-		julia_thread(mlx);
-	if (*mlx->ac == '1')
-		mandelbrot_thread(mlx);
-}
-
-int			mousemove(int mx, int my, void *param)
-{
-	t_mlx *mlx;
-
-	mlx = (t_mlx *)param;
-	if (!mlx->pause && *mlx->ac == '2')
 	{
-		set(mlx, &mlx->c, mx, my);
-		choice(mlx);
+		burningship_thread(mlx);
+		menu(*mlx);
 	}
-	return (0);
+	else if (*mlx->ac == '2')
+	{
+		julia_thread(mlx);
+		menu(*mlx);
+	}
+	else if (*mlx->ac == '1')
+	{
+		mandelbrot_thread(mlx);
+		menu(*mlx);
+	}
 }

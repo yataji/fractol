@@ -6,7 +6,7 @@
 /*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/29 00:50:03 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/13 23:32:17 by yataji           ###   ########.fr       */
+/*   Updated: 2020/11/15 06:30:26 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void			*burningship(void *param)
 			n.z.y = 0;
 			n.c.x = (mlx->w.xmax - mlx->w.xmin) * n.x / MAXWIDTH + mlx->w.xmin;
 			n.c.y = (mlx->w.ymax - mlx->w.ymin) * n.y / MAXHEIGHT + mlx->w.ymin;
-			mlx->iter[0] = 1;
-			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->iter[0] < MXIT)
+			mlx->itr[0] = 1;
+			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->itr[0] < MXIT)
 			{
 				mlx->tmp[0] = n.z.x;
 				n.z.x = absolu(n.z.x * n.z.x - n.z.y * n.z.y + n.c.x);
 				n.z.y = absolu(2 * mlx->tmp[0] * n.z.y + n.c.y);
 			}
-			revers(mlx, n.x, n.y, color(mlx->iter[0]));
+			dt(mlx, n.x, n.y, clr(mlx->itr[0], mlx->r.i, mlx->r.j, mlx->r.l));
 		}
 	}
 	return (0);
@@ -57,14 +57,14 @@ void			*burningship2(void *param)
 			n.z.y = 0;
 			n.c.x = (mlx->w.xmax - mlx->w.xmin) * n.x / MAXWIDTH + mlx->w.xmin;
 			n.c.y = (mlx->w.ymax - mlx->w.ymin) * n.y / MAXHEIGHT + mlx->w.ymin;
-			mlx->iter[1] = 1;
-			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->iter[1] < MXIT)
+			mlx->itr[1] = 1;
+			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->itr[1] < MXIT)
 			{
 				mlx->tmp[1] = n.z.x;
 				n.z.x = absolu(n.z.x * n.z.x - n.z.y * n.z.y + n.c.x);
 				n.z.y = absolu(2 * mlx->tmp[1] * n.z.y + n.c.y);
 			}
-			revers(mlx, n.x, n.y, color(mlx->iter[1]));
+			dt(mlx, n.x, n.y, clr(mlx->itr[1], mlx->r.i, mlx->r.j, mlx->r.l));
 		}
 	}
 	return (0);
@@ -86,14 +86,14 @@ void			*burningship3(void *param)
 			n.z.y = 0;
 			n.c.x = (mlx->w.xmax - mlx->w.xmin) * n.x / MAXWIDTH + mlx->w.xmin;
 			n.c.y = (mlx->w.ymax - mlx->w.ymin) * n.y / MAXHEIGHT + mlx->w.ymin;
-			mlx->iter[2] = 1;
-			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->iter[2] < MXIT)
+			mlx->itr[2] = 1;
+			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->itr[2] < MXIT)
 			{
 				mlx->tmp[2] = n.z.x;
 				n.z.x = absolu(n.z.x * n.z.x - n.z.y * n.z.y + n.c.x);
 				n.z.y = absolu(2 * mlx->tmp[2] * n.z.y + n.c.y);
 			}
-			revers(mlx, n.x, n.y, color(mlx->iter[2]));
+			dt(mlx, n.x, n.y, clr(mlx->itr[2], mlx->r.i, mlx->r.j, mlx->r.l));
 		}
 	}
 	return (0);
@@ -115,14 +115,14 @@ void			*burningship4(void *param)
 			n.z.y = 0;
 			n.c.x = (mlx->w.xmax - mlx->w.xmin) * n.x / MAXWIDTH + mlx->w.xmin;
 			n.c.y = (mlx->w.ymax - mlx->w.ymin) * n.y / MAXHEIGHT + mlx->w.ymin;
-			mlx->iter[3] = 1;
-			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->iter[3] < MXIT)
+			mlx->itr[3] = 1;
+			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->itr[3] < MXIT)
 			{
 				mlx->tmp[3] = n.z.x;
 				n.z.x = absolu(n.z.x * n.z.x - n.z.y * n.z.y + n.c.x);
 				n.z.y = absolu(2 * mlx->tmp[3] * n.z.y + n.c.y);
 			}
-			revers(mlx, n.x, n.y, color(mlx->iter[3]));
+			dt(mlx, n.x, n.y, clr(mlx->itr[3], mlx->r.i, mlx->r.j, mlx->r.l));
 		}
 	}
 	return (0);
