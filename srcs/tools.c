@@ -6,7 +6,7 @@
 /*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/10 05:43:23 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/15 07:11:28 by yataji           ###   ########.fr       */
+/*   Updated: 2020/11/20 02:11:05 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,36 +35,25 @@ void				changecolor(t_mlx *mlx)
 	mlx->r.i > 2 ? mlx->r.i = 0 : 0;
 }
 
-int					clr(int iter, int i, int j, int l)
+int					clr(int iter, t_mlx mlx)
 {
 	double			per;
 	int				color;
 	unsigned char	*ptr;
 
-	per = iter / MXIT;
+	per = iter / mlx.it;
 	ptr = (unsigned char *)&color;
 	ptr[3] = 0;
-	ptr[i] = 255 * (1.0 - per) * powf(per, 3) * 9;
-	ptr[j] = 255 * powf(1.0 - per, 2) * powf(per, 2) * 15;
-	ptr[l] = 255 * powf(1.0 - per, 3) * per * 8.5;
+	ptr[mlx.r.i] = 255 * (1.0 - per) * powf(per, 3) * 9;
+	ptr[mlx.r.j] = 255 * powf(1.0 - per, 2) * powf(per, 2) * 15;
+	ptr[mlx.r.l] = 255 * powf(1.0 - per, 3) * per * 8.5;
 	return (color);
 }
 
-void				choice(t_mlx *mlx)
+int					ft_exit(t_mlx *mlx)
 {
-	if (*mlx->ac == '3')
-	{
-		burningship_thread(mlx);
-		menu(*mlx);
-	}
-	else if (*mlx->ac == '2')
-	{
-		julia_thread(mlx);
-		menu(*mlx);
-	}
-	else if (*mlx->ac == '1')
-	{
-		mandelbrot_thread(mlx);
-		menu(*mlx);
-	}
+	mlx_clear_window(mlx->ptr, mlx->win_ptr);
+	mlx_destroy_window(mlx->ptr, mlx->win_ptr);
+	exit(0);
+	return (0);
 }

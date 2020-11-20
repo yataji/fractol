@@ -6,7 +6,7 @@
 /*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 13:45:43 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/15 06:28:42 by yataji           ###   ########.fr       */
+/*   Updated: 2020/11/20 02:08:07 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void			*julia(void *param)
 			z.x = (mlx->w.xmax - mlx->w.xmin) * x / MAXWIDTH + mlx->w.xmin;
 			z.y = (mlx->w.ymax - mlx->w.ymin) * y / MAXHEIGHT + mlx->w.ymin;
 			mlx->itr[0] = 1;
-			while (z.x * z.x + z.y * z.y < 4 && ++mlx->itr[0] < MXIT)
+			while (z.x * z.x + z.y * z.y < 4 && ++mlx->itr[0] < mlx->it)
 			{
 				mlx->tmp[0] = z.x;
 				z.x = z.x * z.x - z.y * z.y + mlx->c.x;
 				z.y = (2 * mlx->tmp[0] * z.y + mlx->c.y);
 			}
-			dt(mlx, x, y, clr(mlx->itr[0], mlx->r.i, mlx->r.j, mlx->r.l));
+			dt(mlx, x, y, clr(mlx->itr[0], *mlx));
 		}
 	}
 	return (0);
@@ -58,13 +58,13 @@ void			*julia1(void *param)
 			z.x = (mlx->w.xmax - mlx->w.xmin) * x / MAXWIDTH + mlx->w.xmin;
 			z.y = (mlx->w.ymax - mlx->w.ymin) * y / MAXHEIGHT + mlx->w.ymin;
 			mlx->itr[1] = 1;
-			while (z.x * z.x + z.y * z.y < 4 && ++mlx->itr[1] < MXIT)
+			while (z.x * z.x + z.y * z.y < 4 && ++mlx->itr[1] < mlx->it)
 			{
 				mlx->tmp[1] = z.x;
 				z.x = z.x * z.x - z.y * z.y + mlx->c.x;
 				z.y = (2 * mlx->tmp[1] * z.y + mlx->c.y);
 			}
-			dt(mlx, x, y, clr(mlx->itr[1], mlx->r.i, mlx->r.j, mlx->r.l));
+			dt(mlx, x, y, clr(mlx->itr[1], *mlx));
 		}
 	}
 	return (0);
@@ -87,13 +87,13 @@ void			*julia2(void *param)
 			z.x = (mlx->w.xmax - mlx->w.xmin) * x / MAXWIDTH + mlx->w.xmin;
 			z.y = (mlx->w.ymax - mlx->w.ymin) * y / MAXHEIGHT + mlx->w.ymin;
 			mlx->itr[2] = 1;
-			while (z.x * z.x + z.y * z.y < 4 && ++mlx->itr[2] < MXIT)
+			while (z.x * z.x + z.y * z.y < 4 && ++mlx->itr[2] < mlx->it)
 			{
 				mlx->tmp[2] = z.x;
 				z.x = z.x * z.x - z.y * z.y + mlx->c.x;
 				z.y = (2 * mlx->tmp[2] * z.y + mlx->c.y);
 			}
-			dt(mlx, x, y, clr(mlx->itr[2], mlx->r.i, mlx->r.j, mlx->r.l));
+			dt(mlx, x, y, clr(mlx->itr[2], *mlx));
 		}
 	}
 	return (0);
@@ -116,13 +116,13 @@ void			*julia3(void *param)
 			z.x = (mlx->w.xmax - mlx->w.xmin) * x / MAXWIDTH + mlx->w.xmin;
 			z.y = (mlx->w.ymax - mlx->w.ymin) * y / MAXHEIGHT + mlx->w.ymin;
 			mlx->itr[3] = 1;
-			while (z.x * z.x + z.y * z.y < 4 && ++mlx->itr[3] < MXIT)
+			while (z.x * z.x + z.y * z.y < 4 && ++mlx->itr[3] < mlx->it)
 			{
 				mlx->tmp[3] = z.x;
 				z.x = z.x * z.x - z.y * z.y + mlx->c.x;
 				z.y = (2 * mlx->tmp[3] * z.y + mlx->c.y);
 			}
-			dt(mlx, x, y, clr(mlx->itr[3], mlx->r.i, mlx->r.j, mlx->r.l));
+			dt(mlx, x, y, clr(mlx->itr[3], *mlx));
 		}
 	}
 	return (0);

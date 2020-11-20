@@ -6,7 +6,7 @@
 /*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/23 13:35:24 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/15 06:33:37 by yataji           ###   ########.fr       */
+/*   Updated: 2020/11/20 02:08:05 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void			*mandelbrot(void *param)
 			n.c.x = (mlx->w.xmax - mlx->w.xmin) * n.x / MAXWIDTH + mlx->w.xmin;
 			n.c.y = (mlx->w.ymax - mlx->w.ymin) * n.y / MAXHEIGHT + mlx->w.ymin;
 			mlx->itr[0] = 0;
-			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->itr[0] < MXIT)
+			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->itr[0] < mlx->it)
 			{
 				mlx->tmp[0] = n.z.x;
 				n.z.x = (n.z.x * n.z.x) - (n.z.y * n.z.y) + n.c.x;
 				n.z.y = (2 * mlx->tmp[0] * n.z.y + n.c.y);
 			}
-			dt(mlx, n.x, n.y, clr(mlx->itr[0], mlx->r.i, mlx->r.j, mlx->r.l));
+			dt(mlx, n.x, n.y, clr(mlx->itr[0], *mlx));
 		}
 	}
 	return (0);
@@ -58,13 +58,13 @@ void			*mandelbrot2(void *param)
 			n.c.x = (mlx->w.xmax - mlx->w.xmin) * n.x / MAXWIDTH + mlx->w.xmin;
 			n.c.y = (mlx->w.ymax - mlx->w.ymin) * n.y / MAXHEIGHT + mlx->w.ymin;
 			mlx->itr[1] = 0;
-			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->itr[1] < MXIT)
+			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->itr[1] < mlx->it)
 			{
 				mlx->tmp[1] = n.z.x;
 				n.z.x = (n.z.x * n.z.x) - (n.z.y * n.z.y) + n.c.x;
 				n.z.y = (2 * mlx->tmp[1] * n.z.y + n.c.y);
 			}
-			dt(mlx, n.x, n.y, clr(mlx->itr[1], mlx->r.i, mlx->r.j, mlx->r.l));
+			dt(mlx, n.x, n.y, clr(mlx->itr[1], *mlx));
 		}
 	}
 	return (0);
@@ -87,13 +87,13 @@ void			*mandelbrot3(void *param)
 			n.c.x = (mlx->w.xmax - mlx->w.xmin) * n.x / MAXWIDTH + mlx->w.xmin;
 			n.c.y = (mlx->w.ymax - mlx->w.ymin) * n.y / MAXHEIGHT + mlx->w.ymin;
 			mlx->itr[2] = 0;
-			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->itr[2] < MXIT)
+			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->itr[2] < mlx->it)
 			{
 				mlx->tmp[2] = n.z.x;
 				n.z.x = (n.z.x * n.z.x) - (n.z.y * n.z.y) + n.c.x;
 				n.z.y = (2 * mlx->tmp[2] * n.z.y + n.c.y);
 			}
-			dt(mlx, n.x, n.y, clr(mlx->itr[2], mlx->r.i, mlx->r.j, mlx->r.l));
+			dt(mlx, n.x, n.y, clr(mlx->itr[2], *mlx));
 		}
 	}
 	return (0);
@@ -116,13 +116,13 @@ void			*mandelbrot4(void *param)
 			n.c.x = (mlx->w.xmax - mlx->w.xmin) * n.x / MAXWIDTH + mlx->w.xmin;
 			n.c.y = (mlx->w.ymax - mlx->w.ymin) * n.y / MAXHEIGHT + mlx->w.ymin;
 			mlx->itr[3] = 0;
-			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->itr[3] < MXIT)
+			while (n.z.x * n.z.x + n.z.y * n.z.y < 4 && ++mlx->itr[3] < mlx->it)
 			{
 				mlx->tmp[3] = n.z.x;
 				n.z.x = (n.z.x * n.z.x) - (n.z.y * n.z.y) + n.c.x;
 				n.z.y = (2 * mlx->tmp[3] * n.z.y + n.c.y);
 			}
-			dt(mlx, n.x, n.y, clr(mlx->itr[3], mlx->r.i, mlx->r.j, mlx->r.l));
+			dt(mlx, n.x, n.y, clr(mlx->itr[3], *mlx));
 		}
 	}
 	return (0);
