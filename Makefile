@@ -6,31 +6,36 @@
 #    By: yataji <yataji@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 11:57:48 by yataji            #+#    #+#              #
-#    Updated: 2020/11/14 04:41:19 by yataji           ###   ########.fr        #
+#    Updated: 2020/12/28 17:51:44 by yataji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME=fractol
-SRCS= srcs/*.c
-FLG= -Wall -Wextra -Werror
-INC= includes/
-INCS= includes/fractol.h
+NAME = fractol
+OBJ  = srcs/burningship.o srcs/julia.o srcs/juliatools.o srcs/key.o\
+srcs/main.o srcs/mandelbrot.o srcs/tools.o srcs/zoom.o
+FLG  = -Wall -Wextra -Werror
+INC  = includes/
+INCS = includes/fractol.h
 
 
 all: $(NAME)
 
-$(NAME): $(SRCS) $(INCS)
+%.o : %.c $(INCS)
+	@gcc $(FLG) -o $@ -c $< -I $(INC)
+	
+$(NAME): $(OBJ) 
 	@make  -s -C libft
-	@gcc $(FLG) libft/libft.a $(SRCS) -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit -o $(NAME) -I $(INC)
+	@gcc $(FLG) libft/libft.a $(OBJ) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 	@printf "compilation completed\n"
 
 clean:
 	@make -C libft/ clean
+	@rm -f $(OBJ)
 	@printf "clean terminated\n"
 
 fclean: clean
 	@make -C libft/ fclean
-	@rm -f $(NAME)
+	@rm -f $(OBJ) $(NAME)
 	@printf "clean all\n"
 
 re: fclean all

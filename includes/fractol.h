@@ -6,7 +6,7 @@
 /*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:56:18 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/20 02:11:03 by yataji           ###   ########.fr       */
+/*   Updated: 2020/12/28 17:02:47 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef	struct	s_mlx	{
 	int			pause;
 	int			itr[4];
 	double		tmp[4];
-	char		*ac;
+	char		ac[1];
 	t_point		c;
 	t_move		w;
 	t_color		r;
@@ -69,7 +69,8 @@ typedef struct	s_thread {
 	t_point		c;
 }				t_thread;
 
-void			applyzoom(t_mlx *e, double mouser, double mousei, double zoomfctr);
+void			applyzoom(t_mlx *e, double mouser, double mousei,
+		double zoomfctr);
 void			menujulia(t_mlx *mlx, int button, int x, int y);
 double			absolu(double calc);
 void			dt(t_mlx *mlx, int x, int y, int color);

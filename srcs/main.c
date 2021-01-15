@@ -6,7 +6,7 @@
 /*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/10 02:40:16 by yataji            #+#    #+#             */
-/*   Updated: 2020/11/20 02:11:06 by yataji           ###   ########.fr       */
+/*   Updated: 2020/12/28 18:11:41 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void		menu2(t_mlx mlx)
 {
+	char	*it;
+
+	it = ft_itoa(mlx.it);
 	mlx_string_put(mlx.ptr, mlx.win_ptr, 10, MAXHEIGHT + 50, 0xffff00,
 			"R           = Reset");
 	mlx_string_put(mlx.ptr, mlx.win_ptr, 10, MAXHEIGHT + 70, 0xffff00,
@@ -31,7 +34,8 @@ void		menu2(t_mlx mlx)
 	mlx_string_put(mlx.ptr, mlx.win_ptr, 320, MAXHEIGHT + 110, 0xffff00,
 			"iteration = ");
 	mlx_string_put(mlx.ptr, mlx.win_ptr, 450, MAXWIDTH + 110, 0xffff00,
-			ft_itoa(mlx.it));
+			it);
+	ft_strdel(&it);
 }
 
 void		menu(t_mlx mlx)
@@ -85,10 +89,9 @@ t_mlx		init(char *ac)
 	mlx.c = (t_point){0.0, 0.0};
 	mlx.bpp = 0;
 	mlx.size_line = 0;
-	mlx.julia = 0;
 	mlx.pause = 0;
 	mlx.color = 0;
-	mlx.ac = ac;
+	mlx.ac[0] = ac[0];
 	mlx.r.i = 0;
 	mlx.r.j = 1;
 	mlx.r.l = 2;
