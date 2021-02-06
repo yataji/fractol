@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   treecorns.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: yataji <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/23 13:35:24 by yataji            #+#    #+#             */
-/*   Updated: 2021/02/03 17:58:17 by yataji           ###   ########.fr       */
+/*   Created: 2021/02/03 16:49:30 by yataji            #+#    #+#             */
+/*   Updated: 2021/02/03 17:58:16 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void			*mandelbrot(void *param)
+void			*treecorns(void *param)
 {
 	t_mlx		*mlx;
 	t_thread	n;
@@ -33,7 +33,7 @@ void			*mandelbrot(void *param)
 			{
 				mlx->tmp[0] = n.z.x;
 				n.z.x = (n.z.x * n.z.x) - (n.z.y * n.z.y) + n.c.x;
-				n.z.y = (2 * mlx->tmp[0] * n.z.y + n.c.y);
+				n.z.y = (-2 * mlx->tmp[0] * n.z.y + n.c.y);
 			}
 			dt(mlx, n.x, n.y, clr(mlx->itr[0], *mlx));
 		}
@@ -41,7 +41,7 @@ void			*mandelbrot(void *param)
 	return (0);
 }
 
-void			*mandelbrot2(void *param)
+void			*treecorns2(void *param)
 {
 	t_mlx		*mlx;
 	t_thread	n;
@@ -62,7 +62,7 @@ void			*mandelbrot2(void *param)
 			{
 				mlx->tmp[1] = n.z.x;
 				n.z.x = (n.z.x * n.z.x) - (n.z.y * n.z.y) + n.c.x;
-				n.z.y = (2 * mlx->tmp[1] * n.z.y + n.c.y);
+				n.z.y = (-2 * mlx->tmp[1] * n.z.y + n.c.y);
 			}
 			dt(mlx, n.x, n.y, clr(mlx->itr[1], *mlx));
 		}
@@ -70,7 +70,7 @@ void			*mandelbrot2(void *param)
 	return (0);
 }
 
-void			*mandelbrot3(void *param)
+void			*treecorns3(void *param)
 {
 	t_mlx		*mlx;
 	t_thread	n;
@@ -91,7 +91,7 @@ void			*mandelbrot3(void *param)
 			{
 				mlx->tmp[2] = n.z.x;
 				n.z.x = (n.z.x * n.z.x) - (n.z.y * n.z.y) + n.c.x;
-				n.z.y = (2 * mlx->tmp[2] * n.z.y + n.c.y);
+				n.z.y = (-2 * mlx->tmp[2] * n.z.y + n.c.y);
 			}
 			dt(mlx, n.x, n.y, clr(mlx->itr[2], *mlx));
 		}
@@ -99,7 +99,7 @@ void			*mandelbrot3(void *param)
 	return (0);
 }
 
-void			*mandelbrot4(void *param)
+void			*treecorns4(void *param)
 {
 	t_mlx		*mlx;
 	t_thread	n;
@@ -120,7 +120,7 @@ void			*mandelbrot4(void *param)
 			{
 				mlx->tmp[3] = n.z.x;
 				n.z.x = (n.z.x * n.z.x) - (n.z.y * n.z.y) + n.c.x;
-				n.z.y = (2 * mlx->tmp[3] * n.z.y + n.c.y);
+				n.z.y = (-2 * mlx->tmp[3] * n.z.y + n.c.y);
 			}
 			dt(mlx, n.x, n.y, clr(mlx->itr[3], *mlx));
 		}
@@ -128,14 +128,14 @@ void			*mandelbrot4(void *param)
 	return (0);
 }
 
-void			mandelbrot_thread(t_mlx *mlx)
+void			treecorns_thread(t_mlx *mlx)
 {
 	pthread_t	thread[4];
 
-	pthread_create(&thread[0], NULL, &mandelbrot, mlx);
-	pthread_create(&thread[1], NULL, &mandelbrot2, mlx);
-	pthread_create(&thread[2], NULL, &mandelbrot3, mlx);
-	pthread_create(&thread[3], NULL, &mandelbrot4, mlx);
+	pthread_create(&thread[0], NULL, &treecorns, mlx);
+	pthread_create(&thread[1], NULL, &treecorns2, mlx);
+	pthread_create(&thread[2], NULL, &treecorns3, mlx);
+	pthread_create(&thread[3], NULL, &treecorns4, mlx);
 	pthread_join(thread[0], NULL);
 	pthread_join(thread[1], NULL);
 	pthread_join(thread[2], NULL);

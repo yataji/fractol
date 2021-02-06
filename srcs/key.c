@@ -6,27 +6,32 @@
 /*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 23:33:09 by yataji            #+#    #+#             */
-/*   Updated: 2020/12/28 16:49:41 by yataji           ###   ########.fr       */
+/*   Updated: 2021/02/03 17:58:23 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
+void		reset(t_mlx *mlx)
+{
+	mlx->w.xmin = -2;
+	mlx->w.ymin = -2;
+	mlx->w.xmax = 2;
+	mlx->w.ymax = 2;
+	if (mlx->ac[0] == '1')
+		mlx->ac[0] = '2';
+	else if (mlx->ac[0] == '2')
+		mlx->ac[0] = '3';
+	else if (mlx->ac[0] == '3')
+		mlx->ac[0] = '4';
+	else if (mlx->ac[0] == '4')
+		mlx->ac[0] = '1';
+}
+
 void		changefrctandreseet(t_mlx *mlx, int key)
 {
 	if (key == 36)
-	{
-		mlx->w.xmin = -2;
-		mlx->w.ymin = -2;
-		mlx->w.xmax = 2;
-		mlx->w.ymax = 2;
-		if (mlx->ac[0] == '1')
-			mlx->ac[0] = '2';
-		else if (mlx->ac[0] == '2')
-			mlx->ac[0] = '3';
-		else if (mlx->ac[0] == '3')
-			mlx->ac[0] = '1';
-	}
+		reset(mlx);
 	else
 	{
 		key == 15 ? mlx->w.xmin = -2 : 0;
@@ -46,7 +51,7 @@ int			keypress(int key, void *param)
 	double	per;
 
 	mlx = (t_mlx *)param;
-	changefrctandreseet(mlx, key);
+	key == 36 || key == 15 ? changefrctandreseet(mlx, key) : 0;
 	key == 53 ? ft_exit(mlx) : 0;
 	key == 69 ? mlx->it += 50 : 0;
 	key == 78 && mlx->it > 50 ? mlx->it -= 50 : 0;

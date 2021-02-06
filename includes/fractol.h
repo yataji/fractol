@@ -6,7 +6,7 @@
 /*   By: yataji <yataji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:56:18 by yataji            #+#    #+#             */
-/*   Updated: 2020/12/28 17:02:47 by yataji           ###   ########.fr       */
+/*   Updated: 2021/02/03 17:58:13 by yataji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,11 @@ void			changecolor(t_mlx *mlx);
 void			burningship_thread(t_mlx *mlx);
 void			mandelbrot_thread(t_mlx *mlx);
 void			julia_thread(t_mlx *mlx);
+void			treecorns_thread(t_mlx *mlx);
 int				mousemove(int mx, int my, void *param);
 int				mousepress(int button, int x, int y, void *param);
 int				keypress(int key, void *param);
 void			set(t_mlx *mlx, t_point *point, int x, int y);
+void			menu(t_mlx mlx);
 
 #endif
