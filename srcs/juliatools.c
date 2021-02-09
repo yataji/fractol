@@ -39,17 +39,17 @@ void		menujulia(t_mlx *mlx, int button, int x, int y)
 	if (button == 5)
 	{
 		mlx_clear_window(mlx->ptr, mlx->win_ptr);
-		mlx->ac[0] == '2' ? mlx_string_put(mlx->ptr, mlx->win_ptr, 450,
+		mlx->ac[1][0] == '2' ? mlx_string_put(mlx->ptr, mlx->win_ptr, 450,
 				MAXWIDTH + 70, 0xffff00, sx) : 0;
-		mlx->ac[0] == '2' ? mlx_string_put(mlx->ptr, mlx->win_ptr, 450,
+		mlx->ac[1][0] == '2' ? mlx_string_put(mlx->ptr, mlx->win_ptr, 450,
 				MAXWIDTH + 90, 0xffff00, sy) : 0;
 	}
 	else if (button == 4)
 	{
 		mlx_clear_window(mlx->ptr, mlx->win_ptr);
-		mlx->ac[0] == '2' ? mlx_string_put(mlx->ptr, mlx->win_ptr, 450,
+		mlx->ac[1][0] == '2' ? mlx_string_put(mlx->ptr, mlx->win_ptr, 450,
 				MAXWIDTH + 70, 0xffff00, sx) : 0;
-		mlx->ac[0] == '2' ? mlx_string_put(mlx->ptr, mlx->win_ptr, 450,
+		mlx->ac[1][0] == '2' ? mlx_string_put(mlx->ptr, mlx->win_ptr, 450,
 				MAXWIDTH + 90, 0xffff00, sy) : 0;
 	}
 	ft_strdel(&sx);

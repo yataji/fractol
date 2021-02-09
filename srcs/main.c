@@ -40,51 +40,64 @@ void		menu2(t_mlx mlx)
 
 void		menu(t_mlx mlx)
 {
-	mlx.ac[0] == '1' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 10,
+	mlx.ac[1][0] == '1' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 10,
 			MAXHEIGHT + 10, 0xffff00, "Mandelbrot") : 0;
-	mlx.ac[0] == '2' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 10,
+	mlx.ac[1][0] == '2' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 10,
 			MAXHEIGHT + 10, 0xffff00, "Julia") : 0;
-	mlx.ac[0] == '2' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 320,
+	mlx.ac[1][0] == '2' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 320,
 			MAXHEIGHT + 150, 0xffff00,
 			"Mouse Left Button = stop && start") : 0;
-	mlx.ac[0] == '2' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 520,
+	mlx.ac[1][0] == '2' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 520,
 			MAXHEIGHT + 170, 0xffff00, "moving julia") : 0;
-	mlx.ac[0] == '2' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 320,
+	mlx.ac[1][0] == '2' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 320,
 			MAXHEIGHT + 70, 0xffff00, "Mouse x   = ") : 0;
-	mlx.ac[0] == '2' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 320,
+	mlx.ac[1][0] == '2' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 320,
 			MAXHEIGHT + 90, 0xffff00, "Mouse y   = ") : 0;
-	mlx.ac[0] == '3' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 10,
+	mlx.ac[1][0] == '3' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 10,
 			MAXHEIGHT + 10, 0xffff00, "Burningship") : 0;
-	mlx.ac[0] == '4' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 10,
+	mlx.ac[1][0] == '4' ? mlx_string_put(mlx.ptr, mlx.win_ptr, 10,
 			MAXHEIGHT + 10, 0xffff00, "Treecorns") : 0;
 	menu2(mlx);
 }
 
 void		choice(t_mlx *mlx)
 {
-	if (*mlx->ac == '4')
+	if (mlx->ac[1][0] == '4')
 	{
 		treecorns_thread(mlx);
 		menu(*mlx);
 	}
-	else if (*mlx->ac == '3')
+	else if (mlx->ac[1][0] == '3')
 	{
 		burningship_thread(mlx);
 		menu(*mlx);
 	}
-	else if (*mlx->ac == '2')
+	else if (mlx->ac[1][0] == '2')
 	{
 		julia_thread(mlx);
 		menu(*mlx);
 	}
-	else if (*mlx->ac == '1')
+	else if (mlx->ac[1][0] == '1')
 	{
 		mandelbrot_thread(mlx);
 		menu(*mlx);
 	}
 }
 
-t_mlx		init(char *ac)
+char		*namefntr(char **ac)
+{
+	if (ac[1][0] == '1')
+		return ("Mandelbrot");
+	else if (ac[1][0] == '2')
+		return ("Julia");
+	else if (ac[1][0] == '3')
+		return ("Burningship");
+	else if (ac[1][0] == '4')
+		return ("treecorns");
+	return (NULL);
+}
+
+t_mlx		init(char **ac)
 {
 	t_mlx	mlx;
 
@@ -96,13 +109,13 @@ t_mlx		init(char *ac)
 	mlx.c = (t_point){0.0, 0.0};
 	mlx.pause = 0;
 	mlx.color = 0;
-	mlx.ac[0] = ac[0];
+	mlx.ac = ac;
 	mlx.r.i = 0;
 	mlx.r.j = 1;
 	mlx.r.l = 2;
 	mlx.ptr = mlx_init();
 	mlx.win_ptr = mlx_new_window(mlx.ptr, MAXWIDTH, MAXHEIGHT + 200
-			, "fractol");
+			, namefntr(ac));
 	mlx.img_ptr = mlx_new_image(mlx.ptr, MAXWIDTH, MAXHEIGHT);
 	mlx.dtadd = (int *)mlx_get_data_addr(mlx.img_ptr, &mlx.bpp,
 			&mlx.size_line, &mlx.end);
@@ -117,7 +130,7 @@ int			main(int v, char **c)
 		if (c[1][0] == '1' || c[1][0] == '2' ||
 				c[1][0] == '3' || c[1][0] == '4')
 		{
-			mlx = init(c[1]);
+			mlx = init(c);
 			choice(&mlx);
 			mlx_hook(mlx.win_ptr, 6, 0, &mousemove, &mlx);
 			mlx_hook(mlx.win_ptr, 4, 0, &mousepress, &mlx);

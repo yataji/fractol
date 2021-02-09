@@ -50,10 +50,10 @@ int					clr(int iter, t_mlx mlx)
 	return (color);
 }
 
-int					ft_exit(t_mlx *mlx)
+int					ft_exit(t_mlx *mlx, int key)
 {
 	mlx_clear_window(mlx->ptr, mlx->win_ptr);
 	mlx_destroy_window(mlx->ptr, mlx->win_ptr);
-	exit(0);
+	key == 36 ? main(2, mlx->ac) : exit(0);
 	return (0);
 }

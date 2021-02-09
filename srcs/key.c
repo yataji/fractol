@@ -12,26 +12,27 @@
 
 #include "fractol.h"
 
-void		reset(t_mlx *mlx)
+void		change(t_mlx *mlx)
 {
 	mlx->w.xmin = -2;
 	mlx->w.ymin = -2;
 	mlx->w.xmax = 2;
 	mlx->w.ymax = 2;
-	if (mlx->ac[0] == '1')
-		mlx->ac[0] = '2';
-	else if (mlx->ac[0] == '2')
-		mlx->ac[0] = '3';
-	else if (mlx->ac[0] == '3')
-		mlx->ac[0] = '4';
-	else if (mlx->ac[0] == '4')
-		mlx->ac[0] = '1';
+	if (mlx->ac[1][0] == '1')
+		mlx->ac[1][0] = '2';
+	else if (mlx->ac[1][0] == '2')
+		mlx->ac[1][0] = '3';
+	else if (mlx->ac[1][0] == '3')
+		mlx->ac[1][0] = '4';
+	else if (mlx->ac[1][0] == '4')
+		mlx->ac[1][0] = '1';
+	ft_exit(mlx, 36);
 }
 
 void		changefrctandreseet(t_mlx *mlx, int key)
 {
 	if (key == 36)
-		reset(mlx);
+		change(mlx);
 	else
 	{
 		key == 15 ? mlx->w.xmin = -2 : 0;
@@ -52,7 +53,7 @@ int			keypress(int key, void *param)
 
 	mlx = (t_mlx *)param;
 	key == 36 || key == 15 ? changefrctandreseet(mlx, key) : 0;
-	key == 53 ? ft_exit(mlx) : 0;
+	key == 53 ? ft_exit(mlx, 53) : 0;
 	key == 69 ? mlx->it += 50 : 0;
 	key == 78 && mlx->it > 50 ? mlx->it -= 50 : 0;
 	key == 126 || key == 125 ? per = (mlx->w.ymax - mlx->w.ymin) * 0.05 : 0;
@@ -101,7 +102,7 @@ int			mousemove(int mx, int my, void *param)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx *)param;
-	if (!mlx->pause && *mlx->ac == '2')
+	if (!mlx->pause && mlx->ac[1][0] == '2')
 	{
 		mlx_clear_window(mlx->ptr, mlx->win_ptr);
 		set(mlx, &mlx->c, mx, my);

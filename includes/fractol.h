@@ -56,7 +56,7 @@ typedef	struct	s_mlx	{
 	int			pause;
 	int			itr[4];
 	double		tmp[4];
-	char		ac[1];
+	char		**ac;
 	t_point		c;
 	t_move		w;
 	t_color		r;
@@ -69,6 +69,7 @@ typedef struct	s_thread {
 	t_point		c;
 }				t_thread;
 
+char			*namefntr(char **ac);
 void			applyzoom(t_mlx *e, double mouser, double mousei,
 		double zoomfctr);
 void			menujulia(t_mlx *mlx, int button, int x, int y);
@@ -76,7 +77,7 @@ double			absolu(double calc);
 void			dt(t_mlx *mlx, int x, int y, int color);
 int				clr(int iter, t_mlx mlx);
 void			choice(t_mlx *mlx);
-int				ft_exit(t_mlx *mlx);
+int				ft_exit(t_mlx *mlx, int key);
 void			changecolor(t_mlx *mlx);
 void			burningship_thread(t_mlx *mlx);
 void			mandelbrot_thread(t_mlx *mlx);
@@ -87,5 +88,6 @@ int				mousepress(int button, int x, int y, void *param);
 int				keypress(int key, void *param);
 void			set(t_mlx *mlx, t_point *point, int x, int y);
 void			menu(t_mlx mlx);
+int				main(int v, char **c);
 
 #endif
