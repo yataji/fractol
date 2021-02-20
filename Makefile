@@ -6,13 +6,13 @@
 #    By: yataji <yataji@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/20 11:57:48 by yataji            #+#    #+#              #
-#    Updated: 2021/02/03 17:58:11 by yataji           ###   ########.fr        #
+#    Updated: 2021/02/20 17:55:03 by yataji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 OBJ  = srcs/burningship.o srcs/julia.o srcs/juliatools.o srcs/key.o\
-srcs/main.o srcs/mandelbrot.o srcs/tools.o srcs/zoom.o srcs/treecorns.o
+srcs/main.o srcs/mandelbrot.o srcs/tools.o srcs/zoom.o srcs/treecorns.o srcs/menu.o
 FLG  = -Wall -Wextra -Werror
 INC  = includes/
 INCS = includes/fractol.h
